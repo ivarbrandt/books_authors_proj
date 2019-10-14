@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add an Author</title>
+</head>
+<body>
+    <h1>Add an Author</h1>
+    <form action="/addauthor" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="fir_name">First Name</label>
+            <input type="text" name="fir_name">
+        </div>
+        <div>
+            <label for="las_name">Last Name</label>
+            <input type="text" name="las_name">
+        </div>
+        <div>
+            <label for="notes">Notes</label>
+            <input type="text" name="notes" id="notes">
+       </div>
+       <div>
+           <button type="submit">Add</button>
+       </div>
+    </form>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>  
+            <tbody>
+                {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.first_name }} {{ author.last_name }}</td>
+                    <td><a href="/authors/{{author.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
